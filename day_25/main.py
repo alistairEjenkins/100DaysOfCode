@@ -4,14 +4,13 @@ import pandas
 
 screen = Screen()
 screen.title("U.S. State Game")
-image ="blank_states_img.gif"
+image = "blank_states_img.gif"
 screen.addshape(image)
 turtle = Turtle(shape=image)
 
 turt = Turtle()
 turt.hideturtle()
 turt.penup()
-
 
 data = pandas.read_csv("50_states.csv")
 all_states = data.state.to_list()
@@ -32,13 +31,12 @@ else:
     for state in guessed_already:
         on_map(state)
 
-
 playing = True
 while playing:
-    answer_state = screen.textinput(title=f"{len(guessed_already)}/50 States Correct", prompt="Can you name another state?").title()
+    answer_state = screen.textinput(title=f"{len(guessed_already)}/50 States Correct",
+                                    prompt="Can you name another state?").title()
     if answer_state == 'Exit':
-
-        guessed_already_data = {'state' : guessed_already}
+        guessed_already_data = {'state': guessed_already}
         d = pandas.DataFrame(guessed_already_data)
         d.to_csv("guessed_already.csv")
         break
@@ -52,6 +50,4 @@ while playing:
     if len(guessed_already) == 50:
         playing = False
 
-
 # TODO: reload
-
